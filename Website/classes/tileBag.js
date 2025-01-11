@@ -2,9 +2,9 @@ import Tile from "/classes/tile.js";
 
 class TileBag{
 	constructor(){
-		this.tiles = this.CreateTiles();
 		this.size = 100;
 		this.topPointer = 0;
+		this.tiles = this.Shuffle(this.size, this.CreateTiles());
 	}
 	
 	CreateTiles(){
@@ -22,6 +22,19 @@ class TileBag{
 			}
 		}
 		return tileArray;
+	}
+	
+	//I have used the Fisher-Yates shuffle
+	Shuffle(size, tiles){
+		//https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle 21:02 11/01/2025
+		for(let i = size; i > 1; i--){
+			const randomPosition = Math.floor(Math.random() * (i+1));
+			const placeholder = tiles[randomPosition];
+			tiles[randomPosition] = tiles[i];
+			tiles [i] = placeholder;
+			//https://www.w3schools.com/js/js_random.asp 21:06 11/01/2025
+		}
+		return tiles;
 	}
 	
 	TakeTile(){
