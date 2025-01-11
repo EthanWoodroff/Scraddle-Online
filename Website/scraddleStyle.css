@@ -1,12 +1,13 @@
-div{
-	vertical-align: top;
-}
-
+/*text formatting*/
 #title
 {
 	text-align: center;
 }
 
+/*board/hand formatting*/
+div{
+	vertical-align: top;
+}
 #cell{
 	border: 1px solid black;
 	background-color: #FFF0B0;
@@ -14,17 +15,14 @@ div{
 	height:175px;
 	width:175px;
 }
-
 #hand{
 	margin-top: 25px;
-
+}
 #row,#hand{
 	height: 175px;
 }
-
 #board,#row,#hand{
 	width: fit-content;
 	margin-left: auto;
 	margin-right: auto;
 }
-
