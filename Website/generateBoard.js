@@ -21,13 +21,3 @@ BuildGrid("board",3,3);
 
 //generation of the hand
 BuildGrid("hand",1,5);
-
-const bag = new TileBag();
-const tiles = bag.GetBag();
-let stringg = "";
-for(let i = 0; i < 100; i++){
-	stringg += tiles[i].GetLetter();
-	stringg += tiles[i].GetValue();
-}
-
-document.getElementById("debug").innerHTML = stringg;

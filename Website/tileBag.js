@@ -21,10 +21,6 @@ class TileBag{
 		}
 		return tileArray;
 	}
-	
-	GetBag(){
-		return this.tiles;
-	}
 }
 
 export default TileBag;
