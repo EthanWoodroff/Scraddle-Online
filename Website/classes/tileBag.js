@@ -1,8 +1,10 @@
-import Tile from "./tile.js";
+import Tile from "/classes/tile.js";
 
 class TileBag{
 	constructor(){
 		this.tiles = this.CreateTiles();
+		this.size = 100;
+		this.topPointer = 0;
 	}
 	
 	CreateTiles(){
@@ -20,6 +22,12 @@ class TileBag{
 			}
 		}
 		return tileArray;
+	}
+	
+	TakeTile(){
+		this.size--;
+		this.topPointer++;
+		return this.tiles[this.topPointer];
 	}
 }
 
