@@ -5,10 +5,10 @@ class Tile{
 	}
 	
 	GetLetter(){
-		return letter;
+		return this.letter;
 	}
 	GetValue(){
-		return value;
+		return this.value;
 	}
 }
 

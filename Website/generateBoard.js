@@ -1,4 +1,4 @@
-import Tile from "./tileBag.js";
+import TileBag from "./tileBag.js";
 
 //function to build a grid for the board and hand
 function BuildGrid(gridName, height, width){
@@ -22,11 +22,12 @@ BuildGrid("board",3,3);
 //generation of the hand
 BuildGrid("hand",1,5);
 
-bag = new tileBag();
-tiles = bag.GetBag();
-stringg = "";
+const bag = new TileBag();
+const tiles = bag.GetBag();
+let stringg = "";
 for(let i = 0; i < 100; i++){
 	stringg += tiles[i].GetLetter();
+	stringg += tiles[i].GetValue();
 }
 
-document.getElementById(debug).innerHTML = stringg;
+document.getElementById("debug").innerHTML = stringg;
