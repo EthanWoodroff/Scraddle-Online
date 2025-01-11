@@ -1,23 +1,23 @@
-//generation of the board
-const board = document.getElementById("board");
-for (let i = 0; i < 3; i++){
-	const row = document.createElement("div");
-	row.setAttribute("id", "row");
-	board.appendChild(row);
-	
-	for (let j = 0; j < 3; j++) {
-		const cell = document.createElement("div");
-		cell.setAttribute("id", "cell");
-		row.appendChild(cell);
+import TileBag from "./tileBag.js";
+
+//function to build a grid for the board and hand
+function BuildGrid(gridName, height, width){
+	let grid = document.getElementById(gridName);
+	for (let i = 0; i < height; i++){
+		let row = document.createElement("div");
+		row.setAttribute("id", "row");
+		grid.appendChild(row);
+		
+		for (let j = 0; j < width; j++) {
+			let cell = document.createElement("div");
+			cell.setAttribute("id", "cell");
+			row.appendChild(cell);
+		}
 	}
 }
 
-//generation of the hand
-const hand = document.getElementById("hand");
-for (let i = 0; i < 5; i++){
-	const cell = document.createElement("div");
-	cell.setAttribute("id", "cell");
-	hand.appendChild(cell);
-}
+//generation of the board
+BuildGrid("board",3,3);
 
-//COMMENT: turn into recursive function?
+//generation of the hand
+BuildGrid("hand",1,5);
