@@ -1,4 +1,30 @@
+div{
+	vertical-align: top;
+}
+
 #title
 {
 	text-align: center;
 }
+
+#cell{
+	border: 1px solid black;
+	background-color: #FFF0B0;
+	display: inline-block;
+	height:175px;
+	width:175px;
+}
+
+#hand{
+	margin-top: 25px;
+
+#row,#hand{
+	height: 175px;
+}
+
+#board,#row,#hand{
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
