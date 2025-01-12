@@ -6,8 +6,10 @@
 /*board/hand formatting*/
 div{
 	vertical-align: top;
+	line-height: 0;
 }
-#cell{
+div.cell{
+	
 	border: 1px solid black;
 	background-color: #FFF0B0;
 	display: inline-block;
@@ -22,6 +24,31 @@ div{
 }
 #board,#row,#hand{
 	width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
+}
+
+/*tile formatting*/
+div.tile{
+	border: 1px solid black;
+	font-size: 64px;
+	text-align: center;
+	height:125px;
+	width:125px;
+	margin-inline: auto;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*https://www.w3schools.com/css/css3_flexbox_container.asp 00:40 12/01/2025*/
+	
+	position: relative;
+	/*https://www.w3schools.com/css/css_positioning.asp 00:47 12/01/2025*/
+}
+
+#tileValue{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	/*https://www.w3schools.com/css/css_positioning.asp 00:47 12/01/2025*/
+	font-size: 32px;
 }
