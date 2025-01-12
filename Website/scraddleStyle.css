@@ -12,12 +12,21 @@ div.cell{
 	
 	border: 1px solid black;
 	background-color: #FFF0B0;
-	display: inline-block;
 	height:175px;
 	width:175px;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*https://www.w3schools.com/css/css3_flexbox_container.asp 09:27 12/01/2025*/
+	
+	float:left;
 }
 #hand{
 	margin-top: 25px;
+	overflow: hidden;
+	/*https://stackoverflow.com/questions/5803023/how-to-place-two-divs-next-to-each-other 17:44 12/01/2025*/ 
+	border: 1px solid black;
 }
 #row,#hand{
 	height: 175px;

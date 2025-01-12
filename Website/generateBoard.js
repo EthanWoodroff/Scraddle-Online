@@ -3,6 +3,13 @@ import Hand from "/classes/hand.js";
 
 const handSize = 5;
 
+const boardContainer = document.createElement("div");
+const handContainer = document.createElement("div");
+boardContainer.setAttribute("id", "board");
+handContainer.setAttribute("id", "hand");
+document.getElementById("body").appendChild (boardContainer);
+document.getElementById("body").appendChild (handContainer);
+
 //function to build a grid for the board and hand
 function BuildGrid(gridName, height, width){
 	let grid = document.getElementById(gridName);
@@ -35,7 +42,7 @@ for(let i = 0; i < handSize; i++){
 	
 	const cell = document.getElementById("h0-"+i);
 	const handTile = document.createElement("div");
-	handTile.setAttribute("id", "tile" + tilePool.topPointer);
+	handTile.setAttribute("id", hand.hand[i].letter + tilePool.topPointer);
 	handTile.setAttribute("class", "tile");
 	handTile.setAttribute("draggable", "true");
 	handTile.setAttribute("ondragstart", "drag(event)");
@@ -50,11 +57,11 @@ for(let i = 0; i < handSize; i++){
 
 //debug feature for checking the hand
 for(let i = 0; i < 5; i++){
-	document.getElementById("debug").innerHTML += hand.hand[i].letter + hand.hand[i].value + " ";
+	console.log(hand.hand[i].letter + hand.hand[i].value);
 }
 //debug feature for checking the tile pool
 /*
 for(let i = 0; i < tilePool.tiles.length; i++){
-	document.getElementById("debug").innerHTML += tilePool.tiles[i].letter; 
+	console.log(tilePool.tiles[i].letter); 
 }
 */
