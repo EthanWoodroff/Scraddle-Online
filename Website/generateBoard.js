@@ -1,5 +1,6 @@
 import TileBag from "/classes/tileBag.js";
 import Hand from "/classes/hand.js";
+import {allowDrop,drag,drop} from "/dragAndDrop.js";
 
 const handSize = 7;
 const boardWidth = 3; const boardHeight = 3;
@@ -22,14 +23,25 @@ function BuildGrid(gridName, width, height){
 		for (let j = 0; j < width; j++) {
 			let cell = document.createElement("div");
 			cell.setAttribute("class", "cell"); 
+			/*
 			cell.setAttribute("ondrop", "drop(event)");
+			cell.setAttribute("ondrop", "placeTile(event)");
+			cell.setAttribute("ondrag", "pickTile(event)");
 			cell.setAttribute("ondragover", "allowDrop(event)");
+			*/
 			cell.setAttribute("id", gridName[0] + i + "-" + j);
 			row.appendChild(cell);
 		}
 	}
 }
-
+/*
+function placeTile(event){
+	console.log(event);
+}
+function pickTile(event){
+	console.log(event);
+}
+*/
 const tilePool = new TileBag;
 const hand = new Hand;
 
@@ -46,6 +58,11 @@ for(let i = 0; i < handSize; i++){
 
 
 
+
+
+
+
+
 //debug feature for checking the hand
 for(let i = 0; i < 5; i++){
 	console.log(hand.hand[i].letter + hand.hand[i].value);
@@ -56,3 +73,6 @@ for(let i = 0; i < tilePool.tiles.length; i++){
 	console.log(tilePool.tiles[i].letter); 
 }
 */
+
+document.querySelector('div.cell').addEventListener('ondragover', allowDrop);
+document.querySelector('div.cell').addEventListener('ondrop', drop);
