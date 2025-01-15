@@ -29,7 +29,7 @@ function BuildGrid(gridName, width, height){
 		for (let j = 0; j < width; j++) {
 			let cell = document.createElement("div");
 			cell.setAttribute("class", "cell"); 
-			cell.setAttribute("id", gridName[0] + i + "-" + j);
+			cell.setAttribute("id", gridName[0] + String(j).padStart(2, 0) + String(i).padStart(2, 0));
 			row.appendChild(cell);
 		}
 	}
@@ -47,56 +47,24 @@ BuildGrid("hand",handSize,1);
 for(let i = 0; i < handSize; i++){
 	hand.AddToHand(tilePool.TakeTile());
 	const currentTile = hand.handArray[i];
-	currentTile.DrawTile("H" + currentTile.letter + tilePool.topPointer, document.getElementById("h0-"+i), currentTile); //DrawTile() takes (ID, cell, tile)
-}
-/*
-let IDIndicator = "H";
-function IDTracker(event){
-	if(event.target.id[0]=="h") IDIndicator = "H";
-	else if (event.target.id[0]=="b") IDIndicator = "B";
-	//console.log(IDIndicator);
-}
-function IDNuller(event){
-	IDIndicator = "X";
-	//console.log(IDIndicator);
-}
-
-let tileDragged = new Tile;
-function tileTracker(event){
-	tileDragged = event.target.id[0];
+	currentTile.DrawTile(currentTile.letter + String(currentTile.value).padStart(2, 0) + tilePool.topPointer, document.getElementById("h"+String(i).padStart(2, 0)+"00"), currentTile);
+	//DrawTile() takes (ID, cell, tile)
 }
 
 function dropTile(event){
-	const targetX = event.target.id[1];
-	const targetY = event.target.id[3];
-	console.log(event.target.className);
-	if(event.target.className == "tile"){
-		if(IDIndicator == "B"){
-			console.log("Luke Smith");
-			console.log(event.target.id);
-			hand.RemoveFromHand(event.target); 
-			board.boardArray[targetX, targetY] = tileDragged;
-			//console.log(hand.tilesInHand);
-		}
-		else if(IDIndicator == "H"){
-			hand.AddToHand(event.target); 
-			//console.log(hand.tilesInHand);
-		}
-	}
+	const droppedTileID = event.dataTransfer.getData("text");
+	const droppedTile = new Tile(droppedTileID[0], Number(droppedTileID[1]+droppedTileID[2]));
+	console.log("AAH! " + droppedTile.letter + droppedTile.value);
+	console.log(event.dataTransfer.getData("text"));
+	console.log(event.target.id);
+	const dropX = Number(event.target.id[1]+event.target.id[2]);
+	const dropY = Number(event.target.id[3]+event.target.id[4]);
+	console.log("X:" + dropX + " Y:" + dropY);
+	board.AddTile(droppedTile, dropX, dropY);
+}
+function pickTile(event){
 	
-	//console.log("Luke Smith");
-	for(let i = 0; i < hand.handArray.length; i++){
-	console.log(hand.handArray[i].letter + hand.handArray[i].value);
-	}
-	
-	/*
-	for(let i = 0; i < boardHeight; i++){
-		for(let j = 0; j < boardWidth; j++){
-			console.log(board.boardArray[i,j].id);
-		}
-	}
-	
-}*/
+}
 
 
 //adding event listeners
@@ -107,14 +75,11 @@ const tiles = document.querySelectorAll("div.tile");
 for(let i = 0; i < cells.length; i++){
 	cells[i].addEventListener('dragover', allowDrop);
 	cells[i].addEventListener('drop', drop);
-	//cells[i].addEventListener('dragover', IDTracker);
-	//cells[i].addEventListener('dragleave', IDNuller);
-	//cells[i].addEventListener('dragend', dropTile);
+	cells[i].addEventListener('drop', dropTile);
 }
 for(let i = 0; i < tiles.length; i++){
 	tiles[i].addEventListener('dragstart', drag);
-	//tiles[i].addEventListener('dragstart', tileTracker);
-	//tiles[i].addEventListener('dragstart', pickTile);
+	tiles[i].addEventListener('dragstart', pickTile);
 }
 //https://stackoverflow.com/questions/53630310/use-functions-defined-in-es6-module-directly-in-html 7:50 15/01/2025
 //you don't use the "on" prefix when using querySelector
@@ -127,6 +92,6 @@ for(let i = 0; i < hand.handArray.length; i++){
 /*
 //debug feature for checking the tile pool
 for(let i = 0; i < tilePool.tiles.length; i++){
-	console.log(tilePool.tiles[i].letter); 
+	console.log(tilePool.tiles[i].ID); 
 }
 */
