@@ -47,23 +47,43 @@ BuildGrid("hand",handSize,1);
 for(let i = 0; i < handSize; i++){
 	hand.AddToHand(tilePool.TakeTile());
 	const currentTile = hand.handArray[i];
-	currentTile.DrawTile(currentTile.letter + String(currentTile.value).padStart(2, 0) + tilePool.topPointer, document.getElementById("h"+String(i).padStart(2, 0)+"00"), currentTile);
+	const currentCell = document.getElementById("h"+String(i).padStart(2, 0)+"00");
+	currentTile.DrawTile(currentCell.id + currentTile.letter + String(currentTile.value).padStart(2, 0) + tilePool.topPointer, currentCell, currentTile);
 	//DrawTile() takes (ID, cell, tile)
 }
 
 function dropTile(event){
 	const droppedTileID = event.dataTransfer.getData("text");
-	const droppedTile = new Tile(droppedTileID[0], Number(droppedTileID[1]+droppedTileID[2]));
-	console.log("AAH! " + droppedTile.letter + droppedTile.value);
-	console.log(event.dataTransfer.getData("text"));
-	console.log(event.target.id);
+	const droppedTile = new Tile(droppedTileID[5], Number(droppedTileID[6]+droppedTileID[7]));
+	document.getElementById(droppedTileID).id = event.target.id + droppedTileID.slice(-4);
+	//https://www.w3schools.com/js/js_string_methods.asp#mark_trimstart 11:50 16/01/2025
 	const dropX = Number(event.target.id[1]+event.target.id[2]);
 	const dropY = Number(event.target.id[3]+event.target.id[4]);
 	console.log("X:" + dropX + " Y:" + dropY);
-	board.AddTile(droppedTile, dropX, dropY);
+	if(event.target.id[0] == "h"){
+		hand.AddToHand(droppedTile, dropX, dropY);
+	}
+	else if(event.target.id[0] == "b"){
+		board.AddTile(droppedTile, dropX, dropY);
+	}
+	for(let i = 0; i < hand.handArray.length; i++){
+		console.log(hand.handArray[i].letter + hand.handArray[i].value);
+	}
 }
+
 function pickTile(event){
-	
+	console.log(event.target.id[0]);
+	const pickX = Number(event.target.id[1]+event.target.id[2]);
+	const pickY = Number(event.target.id[3]+event.target.id[4]);
+	if(event.target.id[0] == "h"){
+		hand.RemoveFromHand(pickX);
+		for(let i = 0; i < hand.handArray.length; i++){
+			console.log(hand.handArray[i].letter + hand.handArray[i].value);
+		}
+	}
+	else if(event.target.id[0] == "b"){
+		board.Delete(pickX,pickY);
+	}
 }
 
 
