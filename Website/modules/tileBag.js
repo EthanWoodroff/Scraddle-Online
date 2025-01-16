@@ -1,11 +1,10 @@
-import Tile from "/classes/tile.js";
+import Tile from "/modules/tile.js";
 
 class TileBag{
 	constructor(){
 		this.size = 100;
 		this.topPointer = 0;
 		this.tiles = this.Shuffle(this.size, this.CreateTiles());
-		//this.tiles = this.CreateTiles();
 	}
 	
 	CreateTiles(){
