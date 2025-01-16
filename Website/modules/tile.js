@@ -16,6 +16,8 @@ class Tile{
 		newTileValue.setAttribute("id", "tileValue");
 		newTileValue.innerHTML = tile.value;
 		newTile.appendChild(newTileValue);
+		
+		cell.id = cell.id.slice(0,-1) + "F";
 	}
 }
 

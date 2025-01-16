@@ -8,14 +8,25 @@ class Hand{
 		this.tilesInHand = 0;
 	}
 	
-	AddToHand(tile){
-		this.handArray[this.tilesInHand] = tile;
+	AddToHand(tile, position){
+		this.handArray[position] = tile;
 		this.tilesInHand++;
+		//this.PrintHand(this.handArray);
 	}
 	
 	RemoveFromHand(position){
-		this.handArray.splice(position,1);
+		this.handArray[position] = null;
 		this.tilesInHand--;
+		//this.PrintHand(this.handArray);
+	}
+	
+	PrintHand(){
+		let printedHand = "";
+		for(let i = 0; i < this.handSize; i++){
+			if(this.handArray[i] != null) printedHand+=this.handArray[i].letter + ",";
+			else printedHand+="#,";
+		}
+		console.log(printedHand);
 	}
 }
 
