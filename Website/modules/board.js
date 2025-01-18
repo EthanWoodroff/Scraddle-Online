@@ -7,12 +7,12 @@ class Board{
 		this.boardArray = this.CreateArray(this.boardWidth,this.boardHeight);
 	}
 	
-	AddTile(tile, tileX, tileY){
+	AddTile(tile, tileY, tileX){
 		this.boardArray[tileX][tileY] = tile;
 		//this.PrintBoard(this.boardArray);
 	}
 
-	Delete(tileX, tileY){
+	Delete(tileY, tileX){
 		this.boardArray[tileX][tileY] = null;
 		//this.PrintBoard(this.boardArray);
 	}
@@ -29,7 +29,7 @@ class Board{
 		let printedBoard = "";
 		for(let i = 0; i < this.boardHeight; i++){
 			for(let j = 0; j < this.boardWidth; j++){
-				if(this.boardArray[j][i] != null) printedBoard+=this.boardArray[j][i].letter + ",";
+				if(this.boardArray[i][j] != null) printedBoard+=this.boardArray[i][j].letter + ",";
 				else printedBoard+="#,";
 			}
 			printedBoard+="\n";

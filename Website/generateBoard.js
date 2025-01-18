@@ -7,7 +7,7 @@ import Board from "/modules/board.js";
 import {allowDrop,drag,drop} from "/modules/dragAndDrop.js";
 
 //defines traits
-const handSize = 3
+const handSize = 7;
 const boardWidth = 3; const boardHeight = 3;
 
 //creates the board and hand container divs
@@ -117,3 +117,6 @@ for(let i = 0; i < tilePool.tiles.length; i++){
 	console.log(tilePool.tiles[i].ID); 
 }
 */
+
+export default board;
+export {boardWidth, boardHeight};
