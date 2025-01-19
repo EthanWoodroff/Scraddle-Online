@@ -31,8 +31,7 @@ class TileBag{
 			const randomPosition = Math.floor(Math.random() * (i+1));
 			const placeholder = tiles[randomPosition];
 			tiles[randomPosition] = tiles[i];
-			tiles [i] = placeholder;
-			//https://www.w3schools.com/js/js_random.asp 21:06 11/01/2025
+			tiles[i] = placeholder;
 		}
 		return tiles;
 	}

@@ -1,9 +1,7 @@
 import board from "./generateBoard.js"
 import {boardWidth, boardHeight} from "./generateBoard.js";
 
-
-
-function Score(event){
+function Score(){
 	const totalScore = document.getElementById("totalScore");
 	const scores = document.getElementById("scores");
 	const words = (getWords(getRows(),boardHeight)).concat(getWords(getColumns(),boardWidth));
