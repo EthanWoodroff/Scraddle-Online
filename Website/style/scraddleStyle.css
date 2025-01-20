@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Lexend+Giga:wght@700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*Lexend Giga, Nunito, PT Serif, Poppins*/
+:root{
+    --tileColor: #ffea97;
+    --backgroundColor: #377745;
+    --outlineColor: white;
+    --cellColor: #d2cfa0;
+
+    --cellBorderThickness: 4px;
+    --containerPaddingThickness: 8px;
+
+    --handSize: 0;
+    --columnCount: 0;
+    --rowCount: 0;
+    --containerWidth: calc(75vw - (var(--cellBorderThickness) * (var(--columnCount) + 5)));
+    --handWidth: calc((var(--containerWidth) * 1.25) + (var(--handSize) + 1) * var(--cellBorderThickness));
+    --tileDimensions: calc(var(--containerWidth) / var(--columnCount) / 1.25);
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--backgroundColor);
+    color: var(--outlineColor);
+}
+
+/*text formatting*/
+#title{
+    font-size: 5vw;
+    text-align: center;
+    font-family: "Lexend Giga", serif;
+    font-weight: 900;
+}
+p.scoring{
+    font-family: "Nunito", serif;
+}
+#submit{
+    margin: 20px;
+    border: var(--cellBorderThickness) solid white;
+    border-radius: 1vw;
+    font-family: "Nunito", serif;
+    align-self: center;
+    width: 25vw;
+    height: 5vw;
+    background-color: var(--tileColor);
+    font-weight: 900;
+    color: black;
+    font-size: 3vw;
+}
+#submit:hover{
+    color: var(--outlineColor);
+    background-color: var(--backgroundColor);
+}
+#scoreContainer{
+    flex-direction: column;
+}
+
+/*board/hand formatting*/
+div{
+    display: flex;
+    overflow: hidden;
+}
+#row{
+    background-color: var(--outlineColor);
+    flex: 1;
+}
+#hand{
+    box-sizing: content-box;
+    padding: var(--containerPaddingThickness);
+    background-color: var(--outlineColor);
+    flex: 1;
+    border-radius: 2vw;
+    margin: 20px;
+    width: var(--handWidth);
+    height: calc(var(--handWidth) / var(--handSize));
+    margin-inline: auto;
+}
+#board{
+    box-sizing: content-box;
+    padding: var(--containerPaddingThickness);
+    background-color: var(--outlineColor);
+    border-radius: 1vw;
+    flex-direction: column;
+    width: var(--containerWidth);
+    height: var(--containerWidth);
+    margin-inline: auto;
+}
+div.cell{
+    margin: var(--cellBorderThickness);
+    background-color: var(--cellColor);
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+/*tile formatting*/
+div.tile{
+    font-family: "Prompt", serif;
+    font-weight: 600;
+    color: black;
+    border-radius: 2vw;
+    background-color: var(--tileColor);
+    width: var(--tileDimensions);
+    height: var(--tileDimensions);
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--tileDimensions)/2);
+    position: relative;
+}
+#tileValue{
+    font-size: calc(var(--tileDimensions)/3.5);
+    position: absolute;
+	right: 5%;
+	bottom: 0px;
+}
+div.tile:hover{
+    color: var(--outlineColor);
+    background-color: var(--backgroundColor);
+}

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="./scraddleStyle.css">
+		<link rel="stylesheet" href="/style/scraddleStyle.css">
 		
 		<title>SCRADDLE: ONLINE</title>
+		<div id="title"></div>
 	</head>
 	<body id="body">
 		<h1 id="title">SCRADDLE: ONLINE</h1> <br>
-		<button id="submit">SUBMIT</button>
-		<p id="time"></p>
-		<p id="totalScore">Score: </p>
-		<p id="scores">Words: </p>
+		<div id="board"></div>
+		<div id="hand"></div>
+		<div id="scoreContainer">
+			<button id="submit">SUBMIT</button>
+			<p id="totalScore" class="scoring">Score: </p>
+			<p id="scores" class="scoring">Words: </p>
+		</div>
 		
 		<script type="module" src="./scoring.js"></script>
 		<script type="module" src="./generateBoard.js"></script>

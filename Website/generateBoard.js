@@ -7,16 +7,13 @@ import Board from "/modules/board.js";
 import {allowDrop,drag,drop} from "/modules/dragAndDrop.js";
 
 //defines traits
-const handSize = 5;
-const boardWidth = 3; const boardHeight = 3;
+const handSize = 7;
+const boardWidth = 6; const boardHeight = 6;
 
-//creates the board and hand container divs
-const boardContainer = document.createElement("div");
-boardContainer.setAttribute("id", "board");
-document.getElementById("body").appendChild (boardContainer);
-const handContainer = document.createElement("div");
-handContainer.setAttribute("id", "hand");
-document.getElementById("body").appendChild (handContainer);
+var root = document.querySelector(":root");
+root.style.setProperty("--columnCount", boardWidth);
+root.style.setProperty("--rowCount", boardHeight);
+root.style.setProperty("--handSize", handSize);
 
 //function to build a grid for the board and hand
 function BuildGrid(gridName, width, height){

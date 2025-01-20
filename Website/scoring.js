@@ -6,6 +6,7 @@ function Score(){
 	const scores = document.getElementById("scores");
 	const words = (getWords(getRows(),boardHeight)).concat(getWords(getColumns(),boardWidth));
 	let totalValue = 0;
+	scores.innerHTML = "Words:";
 	for(let i = 0; i < words.length; i++){
 		let word = "";
 		let wordValue = 0;

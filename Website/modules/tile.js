@@ -12,7 +12,7 @@ class Tile{
 		newTile.innerHTML = tile.letter;
 		cell.appendChild(newTile);
 		
-		const newTileValue = document.createElement("p");
+		const newTileValue = document.createElement("div");
 		newTileValue.setAttribute("id", "tileValue");
 		newTileValue.innerHTML = tile.value;
 		newTile.appendChild(newTileValue);

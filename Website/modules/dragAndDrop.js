@@ -1,5 +1,8 @@
 export function allowDrop(ev) {
   ev.preventDefault();
+
+  ev.stopPropagation();
+  //https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation 19:54 20/01/2025
 }
 
 export function drag(ev) {
@@ -8,6 +11,9 @@ export function drag(ev) {
 
 export function drop(ev) {
 	if(!(ev.target.className == "cell" && ev.target.id[5] == "E")) {return};
+	
+	ev.stopPropagation();
+    //https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation 19:54 20/01/2025
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
 	ev.target.appendChild(document.getElementById(data));
