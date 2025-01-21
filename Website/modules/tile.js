@@ -9,8 +9,12 @@ class Tile{
 		newTile.setAttribute("id", ID);
 		newTile.setAttribute("class", "tile");
 		newTile.setAttribute("draggable", "true");
-		newTile.innerHTML = tile.letter;
 		cell.appendChild(newTile);
+		
+		const newTileLetter = document.createElement("div");
+		newTileLetter.setAttribute("id", "tileLetter");
+		newTileLetter.innerHTML = tile.letter;
+		newTile.appendChild(newTileLetter);
 		
 		const newTileValue = document.createElement("div");
 		newTileValue.setAttribute("id", "tileValue");

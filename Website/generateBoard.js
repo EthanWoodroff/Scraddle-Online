@@ -8,7 +8,7 @@ import {allowDrop,drag,drop} from "/modules/dragAndDrop.js";
 
 //defines traits
 const handSize = 7;
-const boardWidth = 6; const boardHeight = 6;
+const boardWidth = 5; const boardHeight = 5;
 
 var root = document.querySelector(":root");
 root.style.setProperty("--columnCount", boardWidth);

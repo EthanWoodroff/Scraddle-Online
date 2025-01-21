@@ -34,7 +34,9 @@ function getWords(sentences, length){
 			}
 			if (sentence[j+1] == null && currentWord[0] != undefined){
 				newWord = {word: currentWord, wordLength: letterCount};
+				console.log(newWord);
 				newWords.push(newWord);
+				currentWord = [];
 			}
 		}
 		if(sentence[length-1] != null && sentence[length-2] != null){
@@ -42,6 +44,7 @@ function getWords(sentences, length){
 			letterCount++;
 			newWord = {word: currentWord, wordLength: letterCount};
 			newWords.push(newWord);
+			currentWord = [];
 		}
 	}
 	return newWords;
