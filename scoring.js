@@ -5,6 +5,8 @@ function Score(){
 	const totalScore = document.getElementById("totalScore");
 	const scores = document.getElementById("scores");
 	const words = (getWords(getRows(),boardHeight)).concat(getWords(getColumns(),boardWidth));
+	const serverInput = document.getElementById("words");
+	serverInput.value = "";
 	let totalValue = 0;
 	scores.innerHTML = "Words:";
 	for(let i = 0; i < words.length; i++){
@@ -15,6 +17,8 @@ function Score(){
 			wordValue += words[i].word[j].value;
 		}
 		totalValue += wordValue;
+		serverInput.value += word;
+		if(i != words.length-1) {serverInput.value += ","};
 		scores.innerHTML += ("<br>" + word + ": " + wordValue);
 	}
 	totalScore.innerHTML = "Score: " + totalValue;

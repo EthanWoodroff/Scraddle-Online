@@ -37,12 +37,19 @@ body{
     font-weight: 900;
     text-shadow: .75vw .75vw var(--shadowColor);
 }
+p.date{
+    font-family: "Nunito", serif;
+    font-size: 5vw;
+    font-weight: 700;
+    text-align: center;
+    margin: 0px;
+}
 p.scoring{
     font-family: "Nunito", serif;
     font-size: 4vw;
     font-weight: 700;
     position: fixed;
-    top: 107.5vw;
+    top: 115vw;
 }
 #scores{
     right: 10vw;
@@ -67,6 +74,7 @@ p.scoring{
 }
 #scoreContainer{
     flex-direction: column;
+    display: flex;
 }
 
 /*board/hand formatting*/
@@ -189,5 +197,8 @@ div.tile:hover{
     #title{
         font-size: 5vh;
         text-shadow: .75vh .75vh var(--shadowColor);
+    }
+    p.date{
+        font-size: 5vh;
     }
 }
