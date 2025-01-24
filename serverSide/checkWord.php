@@ -10,10 +10,12 @@
             foreach($words as $word){
                 if(!binaryWordSearch($word)){
                     echo("Fake Word");
+                    echo "false"->process($_POST);
                     die;
                 }
             }
             echo("Real Word");
+            echo "true"->process($_POST);
 
             function binaryWordSearch($targetWord){
                 $allWordsFile = fopen("english_words_all.txt", "r") or die("Error retrieving server date.");

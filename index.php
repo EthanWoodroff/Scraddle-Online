@@ -18,14 +18,15 @@
 		<div id="board"></div>
 		<div id="hand"></div>
 		<div id="scoreContainer">
-			<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+			<form id="submitBoard" method="post">
 				<input type="hidden" id="words" name="words" value="" readonly required>
-				<button id="submit">SUBMIT</button>
+				<button id="submit" type="submit">SUBMIT</button>
 			</form>
+			<p id="TEST"> testing </p>
 			<p id="totalScore" class="scoring">Score: </p>
 			<p id="scores" class="scoring">Words: </p>
 		</div>
-
+		<script type="module" src="./formHandler.js"></script>
 		<script type="module" src="./scoring.js"></script>
 		<script type="module" src="./generateBoard.js"></script>
 		<script type="module" src="/modules/dragAndDrop.js"></script>
