@@ -10,6 +10,7 @@ import {allowDrop,drag,drop} from "/modules/dragAndDrop.js";
 const handSize = 7;
 const boardWidth = 5; const boardHeight = 5;
 
+//setting css variables
 var root = document.querySelector(":root");
 root.style.setProperty("--columnCount", boardWidth);
 root.style.setProperty("--rowCount", boardHeight);
@@ -54,6 +55,7 @@ for(let i = 0; i < handSize; i++){
 }
 
 function dropTile(event){
+	//handles the tile dropping for the board array
 	if(!(event.target.className == "cell" && event.target.id[5] == "E")) {return};
 	//if the target that the tile's being dropped on isn't an empty cell, then the function doesn't run
 	const droppedTileID = event.dataTransfer.getData("text");
