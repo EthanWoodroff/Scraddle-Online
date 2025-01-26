@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		
-
+		<script src="/libraries/dragAndDropTouch.js"></script>
 		<link rel="stylesheet" href="/style/scraddleStyle.css">
 		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		
