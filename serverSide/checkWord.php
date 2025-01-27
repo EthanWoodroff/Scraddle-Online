@@ -1,4 +1,3 @@
-
 <?php
     $wordsRaw = /*strtolower*/($_POST["words"]);
     if($wordsRaw == "") {
@@ -8,11 +7,11 @@
     
     foreach($words as $word){
         if(!binaryWordSearch($word)){
-            echo("Fake Word");
+            echo "fakeWord";
             die;
         }
     }
-    echo("Real Word");
+    echo "realWord";
 
     function binaryWordSearch($targetWord){
         $dictionaryName = "dictionary.txt";
@@ -30,9 +29,9 @@
         while($bottomPointer <= $topPointer){
             $middlePointer = floor(($bottomPointer + $topPointer)/2);
             $checkWord = $allWords[$middlePointer];
-            echo $checkWord . "\n";
+            //echo $checkWord . "\n";
             if($targetWord == $checkWord){
-                echo $bottomPointer . " " . $topPointer . " " . $targetWord . " " . $checkWord . "\n";
+                //echo $bottomPointer . " " . $topPointer . " " . $targetWord . " " . $checkWord . "\n";
                 return true;
             }
             if($targetWord < $checkWord){
@@ -42,7 +41,7 @@
                 $bottomPointer = $middlePointer + 1;
             }
         }
-        echo $bottomPointer . " " . $topPointer . " " . $targetWord . " " . $checkWord . "\n";
+        //echo $bottomPointer . " " . $topPointer . " " . $targetWord . " " . $checkWord . "\n";
         return false;
     }
 

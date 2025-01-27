@@ -54,6 +54,10 @@ p.scoring{
 #scores{
     right: 10vw;
 }
+#submitBoard{
+    flex-direction: column;
+    display: flex;
+}
 #submit{
     margin: 20px;
     border: var(--cellBorderThickness) solid white;

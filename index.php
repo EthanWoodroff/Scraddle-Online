@@ -22,9 +22,7 @@
 				<input type="hidden" id="words" name="words" value="" readonly required>
 				<button id="submit" type="submit">SUBMIT</button>
 			</form>
-			<p id="TEST" class="scoring"> testing </p>
 			<p id="totalScore" class="scoring">Score: </p>
-			<p id="scores" class="scoring">Words: </p>
 		</div>
 		<script type="module" src="./formHandler.js"></script>
 		<script type="module" src="./scoring.js"></script>
