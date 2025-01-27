@@ -1,23 +1,22 @@
 import board from "./generateBoard.js"
 import {boardWidth, boardHeight} from "./generateBoard.js";
 
+
 function Score(){
-	const totalScore = document.getElementById("totalScore");
-	const scores = document.getElementById("scores");
 	const words = (getWords(getRows(),boardHeight)).concat(getWords(getColumns(),boardWidth));
+	const serverInput = document.getElementById("words");
+	serverInput.value = "";
 	let totalValue = 0;
-	scores.innerHTML = "Words:";
 	for(let i = 0; i < words.length; i++){
 		let word = "";
-		let wordValue = 0;
 		for(let j = 0; j < words[i].wordLength; j++){
 			word += words[i].word[j].letter;
-			wordValue += words[i].word[j].value;
+			totalValue += words[i].word[j].value;
 		}
-		totalValue += wordValue;
-		scores.innerHTML += ("<br>" + word + ": " + wordValue);
+		serverInput.value += word;
+		if(i != words.length-1) {serverInput.value += ","};
 	}
-	totalScore.innerHTML = "Score: " + totalValue;
+	SubmitToServer(totalValue);
 }
 
 function getWords(sentences, length){
@@ -72,3 +71,42 @@ function getColumns(){
 
 const button = document.getElementById("submit");
 button.addEventListener('click', Score);
+
+function SubmitToServer(totalValue){
+	const form = document.getElementById('submitBoard');
+	form.addEventListener('submit', (event) => {
+	  event.preventDefault(); // Prevents the default form submission behavior
+  
+	  // Perform any form validation or data manipulation here
+  
+	  const formData = new FormData(form); // Create a FormData object with the form data
+	  fetch("http://localhost/serverSide/checkWord.php", {
+		method: 'POST',
+		body: formData
+	  })
+	  .then(response => {
+		if (response.ok) {
+		  response.text().then(function (text){
+			//https://stackoverflow.com/questions/41946457/getting-text-from-fetch-response-object 27/01/2025 11:01
+			if(text == "realWord"){
+			  document.getElementById("totalScore").innerHTML = "Score: " + totalValue;
+			  console.log("hooray");
+			}
+			else{
+				document.getElementById("totalScore").innerHTML = "Score: Invalid"
+			  console.log("nooray");
+			}
+		  });
+		}
+		else {
+		  console.log("error")
+		  // Handle the error
+		}
+	  })
+	  .catch(error => {
+		console.log(error);
+		// Handle the error
+	  });
+	});
+	//https://html.form.guide/php-form/submit-form-without-reloading-page-php/ 09:21 24/01/2025
+  }
