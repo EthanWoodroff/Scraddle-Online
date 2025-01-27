@@ -6,7 +6,6 @@ form.addEventListener('submit', (event) => {
   // Perform any form validation or data manipulation here
 
   const formData = new FormData(form); // Create a FormData object with the form data
-
   fetch("http://localhost/serverSide/checkWord.php", {
     method: 'POST',
     body: formData
@@ -14,12 +13,19 @@ form.addEventListener('submit', (event) => {
   .then(response => {
     if (response.ok) {
       const testText = document.getElementById("TEST");
-      testText.innerHTML = response.text;
-    } else {
+      response.text().then(function (text){
+        //https://stackoverflow.com/questions/41946457/getting-text-from-fetch-response-object 27/01/2025 11:01
+        console.log(text);
+        //testText.innerHTML = text;
+      });
+    }
+    else {
+      console.log("error")
       // Handle the error
     }
   })
   .catch(error => {
+    console.log(error);
     // Handle the error
   });
 });

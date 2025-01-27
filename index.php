@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<script src="/libraries/dragAndDropTouch.js"></script>
+		<!--https://www.npmjs.com/package/drag-drop-touch?activeTab=readme 09:24 27/01/2025-->
 		<link rel="stylesheet" href="/style/scraddleStyle.css">
 		<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 		
@@ -21,7 +22,7 @@
 				<input type="hidden" id="words" name="words" value="" readonly required>
 				<button id="submit" type="submit">SUBMIT</button>
 			</form>
-			<p id="TEST"> testing </p>
+			<p id="TEST" class="scoring"> testing </p>
 			<p id="totalScore" class="scoring">Score: </p>
 			<p id="scores" class="scoring">Words: </p>
 		</div>
