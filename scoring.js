@@ -1,5 +1,5 @@
-import board from "./generateBoard.js"
-import {boardWidth, boardHeight} from "./generateBoard.js";
+import board from "./modules/generateBoard.js"
+import {boardWidth, boardHeight} from "./modules/generateBoard.js";
 
 
 function Score(){
@@ -52,7 +52,7 @@ function getWords(sentences, length){
 function getRows(){	
 	const rows = Array(boardHeight).fill(null);
 	for(let i = 0; i < boardHeight; i++){
-		rows[i] = board.boardArray[i];
+		rows[i] = board.gridArray[i];
 	}
 	return rows;
 }
@@ -62,7 +62,7 @@ function getColumns(){
 	for(let i = 0; i < boardWidth; i++){
 		let column = Array(boardHeight);
 		for(let j = 0; j < boardHeight; j++){
-			column[j] = board.boardArray[j][i];
+			column[j] = board.gridArray[j][i];
 		}
 		columns[i] = column;
 	}
@@ -80,6 +80,7 @@ function SubmitToServer(totalValue){
 	  // Perform any form validation or data manipulation here
   
 	  const formData = new FormData(form); // Create a FormData object with the form data
+	  //fetch("http://scraddle-online/serverSide/checkWord.php", {
 	  fetch("http://localhost/serverSide/checkWord.php", {
 		method: 'POST',
 		body: formData

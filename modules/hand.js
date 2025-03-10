@@ -1,32 +1,11 @@
-import Tile from "/modules/tile.js";
+import Grid from "/modules/grid.js";
 
-class Hand{
+class Hand extends Grid{
 	constructor(handSize){
-		this.handSize = handSize;
-		this.handArray = Array(handSize).fill(null);
-		//https://stackoverflow.com/questions/34937349/javascript-create-empty-array-of-a-given-size 11/01/2025 19:41
-		this.tilesInHand = 0;
-	}
-	
-	AddToHand(tile, position){
-		this.handArray[position] = tile;
-		this.tilesInHand++;
-		//this.PrintHand(this.handArray);
-	}
-	
-	RemoveFromHand(position){
-		this.handArray[position] = null;
-		this.tilesInHand--;
-		//this.PrintHand(this.handArray);
-	}
-	
-	PrintHand(){
-		let printedHand = "";
-		for(let i = 0; i < this.handSize; i++){
-			if(this.handArray[i] != null) printedHand+=this.handArray[i].letter + ",";
-			else printedHand+="#,";
-		}
-		console.log(printedHand);
+		super();
+		this.gridWidth = handSize;
+		this.gridHeight = 1;
+		this.gridArray = this.CreateArray(this.gridWidth,this.gridHeight);
 	}
 }
 

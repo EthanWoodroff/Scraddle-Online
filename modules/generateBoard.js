@@ -45,8 +45,8 @@ BuildGrid("board",boardWidth,boardHeight);
 //generation of the hand
 BuildGrid("hand",handSize,1);
 for(let i = 0; i < handSize; i++){
-	hand.AddToHand(tilePool.TakeTile(), i);
-	const currentTile = hand.handArray[i];
+	hand.AddTile(tilePool.TakeTile(), i, 0);
+	const currentTile = hand.gridArray[0][i];
 	const currentCell = document.getElementById("h" + String(i).padStart(2, 0) + "00" + "E");
 	const currentTileID = currentCell.id + currentTile.letter + String(currentTile.value).padStart(2, 0);
 	//the tile id is the first letter of its current grid's name followed by the coordinates of its cell followed by whether its tile is "E"mpty or "F"ull (it should always be full), followed by its letter and value
@@ -65,7 +65,7 @@ function dropTile(event){
 	const pickX = Number(droppedTileID[1]+droppedTileID[2]);
 	const pickY = Number(droppedTileID[3]+droppedTileID[4]);
 	if(droppedTileID[0] == "h"){
-		hand.RemoveFromHand(pickX);
+		hand.Delete(pickX, 0);
 	}
 	else if(droppedTileID[0] == "b"){
 		board.Delete(pickX,pickY);
@@ -79,7 +79,7 @@ function dropTile(event){
 	const dropX = Number(event.target.id[1]+event.target.id[2]);
 	const dropY = Number(event.target.id[3]+event.target.id[4]);
 	if(event.target.id[0] == "h"){
-		hand.AddToHand(droppedTile, dropX);
+		hand.AddTile(droppedTile, dropX, 0);
 	}
 	else if(event.target.id[0] == "b"){
 		board.AddTile(droppedTile, dropX, dropY);
@@ -106,8 +106,8 @@ for(let i = 0; i < tiles.length; i++){
 
 //debug feature for checking the hand
 /*
-for(let i = 0; i < hand.handArray.length; i++){
-	console.log(hand.handArray[i].letter + hand.handArray[i].value);
+for(let i = 0; i < hand.gridArray.length; i++){
+	console.log(hand.gridArray[i].letter + hand.gridArray[i].value);
 }
 
 //debug feature for checking the tile pool
@@ -115,6 +115,8 @@ for(let i = 0; i < tilePool.tiles.length; i++){
 	console.log(tilePool.tiles[i].letter + tilePool.tiles[i].value); 
 }
 */
+
+
 
 export default board;
 export {boardWidth, boardHeight};

@@ -24,9 +24,8 @@
 			</form>
 			<p id="totalScore" class="scoring">Score: </p>
 		</div>
-		<script type="module" src="./formHandler.js"></script>
 		<script type="module" src="./scoring.js"></script>
-		<script type="module" src="./generateBoard.js"></script>
+		<script type="module" src="/modules/generateBoard.js"></script>
 		<script type="module" src="/modules/dragAndDrop.js"></script>
 	</body>
 </html>
