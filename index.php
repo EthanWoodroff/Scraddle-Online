@@ -1,3 +1,18 @@
+<?php
+	//https://www.w3schools.com/php/php_cookies.asp
+	if(!isset($_COOKIE["signedIn"])) {
+		setcookie("signedIn", false, time() + (86400 * 30), "/");
+	  }
+	else if($_COOKIE["signedIn"]==1){
+		echo "<form method='POST'><button id='signOut' name='signOut' type='submit'>SIGN OUT</button></form>";
+		//https://www.geeksforgeeks.org/how-to-call-php-function-on-the-click-of-a-button/
+		if(array_key_exists('signOut', $_POST)){
+			setcookie("signedIn", false, time() + (86400 * 30), "/");
+    		//https://www.w3schools.com/php/php_cookies.asp
+		}
+		echo "<p id='username'>".$_COOKIE["username"]."</p>";
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,6 +25,7 @@
 		<div id="title"></div>
 	</head>
 	<body id="body">
+		<a href="./account.php"> <button id="account">ACCOUNT</button> </a>
 		<h1 id="title">SCRADDLE: ONLINE</h1>
 		<?php
 			date_default_timezone_set("Europe/London");

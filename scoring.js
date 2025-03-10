@@ -70,7 +70,7 @@ function getColumns(){
 }
 
 const button = document.getElementById("submit");
-button.addEventListener('click', Score);
+button.addEventListener("click", Score);
 
 function SubmitToServer(totalValue){
 	const form = document.getElementById('submitBoard');
