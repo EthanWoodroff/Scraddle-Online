@@ -90,7 +90,7 @@ table,th,td{
 }
 table{
     background-color: var(--cellColor);
-    width: 100%;
+    height: 100%;
     color: black;
     font-family: "Nunito", serif;
     font-size: 5vw;
@@ -184,6 +184,10 @@ div.tile:hover{
         --containerWidth: calc(60vh - (var(--cellBorderThickness) * (var(--columnCount) + 5)));
         --handWidth: calc((var(--containerWidth) * 1.3) + (var(--handSize) + 1) * var(--cellBorderThickness));
         --tileDimensions: min(calc(var(--containerWidth) / var(--columnCount) / 1.3),calc(var(--handWidth) / var(--handSize) / 1.3));
+    }
+    table{
+        width: 100%;
+        font-size: 5vh;
     }
     div.tile{
         box-shadow: .5vh .5vh 0 0vh var(--shadowColor);

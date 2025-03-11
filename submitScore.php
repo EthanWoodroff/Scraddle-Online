@@ -16,15 +16,16 @@ if ($conn->connect_error) {
 $playedToday = FALSE;
 $betterScore = FALSE;
 
-$sql = "SELECT PlayedToday FROM Users
+$sql = "SELECT PlayedToday, Username FROM Users
 WHERE Username = '".$_COOKIE["username"]."'";
 echo $sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
+        echo($row["Username"]);
         if($row["PlayedToday"]){
-            $playedToday = TRUE;
+            $playedToday = $row["Username"]!="ADMIN";
         }
     }
 }
@@ -52,7 +53,7 @@ if($_COOKIE["signedIn"]==1 and !$playedToday){
     }
     else{
         echo "Not in leaderboard";
-        $sql = "INSERT INTO leaderboard (Username, Score)
+        $sql = "INSERT INTO Leaderboard (Username, Score)
         VALUES ('".$_COOKIE["username"]."',".$score.")";
         errorCheck($sql, $conn);
     }
