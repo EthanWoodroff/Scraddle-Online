@@ -85,6 +85,17 @@ button:hover{
     flex-direction: column;
     display: flex;
 }
+table,th,td{
+    border: 1px solid black;
+}
+table{
+    background-color: var(--cellColor);
+    width: 100%;
+    color: black;
+    font-family: "Nunito", serif;
+    font-size: 5vw;
+    font-weight: 700;
+}
 
 /*board/hand formatting*/
 div{

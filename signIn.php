@@ -3,7 +3,7 @@
 	$servername = "localhost";
 	$username = "EthanAdmin";
 	$password = "password";
-    $databaseName = "scraddle";
+  $databaseName = "scraddle";
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $databaseName);
@@ -12,7 +12,9 @@
 	if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 	}
-
+    if($_COOKIE["signedIn"] == TRUE){
+      header("Location: http://localhost/account.php");
+    }
     $usernameInput = $_POST["usernameInput"];
     $passwordInput = $_POST["passwordInput"];
     $sql = "SELECT Username, Password FROM users
@@ -22,10 +24,15 @@
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-          echo $row["Password"];
+          $passwordCheck = $row["Password"] == $passwordInput;
         }
-        setcookie("signedIn", true, time() + (86400 * 30), "/");
-        setcookie("username", $usernameInput, time() + (86400 * 30), "/");
+        if($passwordCheck){
+          setcookie("signedIn", TRUE, time() + (86400 * 30), "/");
+          setcookie("username", $usernameInput, time() + (86400 * 30), "/");
+        }
+        else{
+          header("Location: http://localhost/account.php");
+        }
     }
     else {
         header("Location: http://localhost/account.php");

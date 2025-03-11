@@ -92,10 +92,11 @@ function SubmitToServer(totalValue){
 			if(text == "realWord"){
 			  document.getElementById("totalScore").innerHTML = "Score: " + totalValue;
 			  console.log("hooray");
+			  SubmitScore(totalValue);
 			}
 			else{
 				document.getElementById("totalScore").innerHTML = "Score: Invalid"
-			  console.log("nooray");
+			    console.log("nooray");
 			}
 		  });
 		}
@@ -110,4 +111,31 @@ function SubmitToServer(totalValue){
 	  });
 	});
 	//https://html.form.guide/php-form/submit-form-without-reloading-page-php/ 09:21 24/01/2025
+  }
+
+  function SubmitScore(score){
+	const form = document.getElementById('submitScore');
+	const scoreInput = document.getElementById("score");
+	scoreInput.value = score;
+	const formData = new FormData(form);
+	fetch("http://localhost/submitScore.php", {
+		method: 'POST',
+		body: formData
+	  })
+	  .then(response => {
+		if (response.ok) {
+		  response.text().then(function (text){
+			console.log(text);
+			//https://stackoverflow.com/questions/41946457/getting-text-from-fetch-response-object 27/01/2025 11:01
+		  });
+		}
+		else {
+		  console.log("error")
+		  // Handle the error
+		}
+	  })
+	  .catch(error => {
+		console.log(error);
+		// Handle the error
+	  });
   }
