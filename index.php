@@ -8,6 +8,7 @@
 		//https://www.geeksforgeeks.org/how-to-call-php-function-on-the-click-of-a-button/
 		if(array_key_exists('signOut', $_POST)){
 			setcookie("signedIn", FALSE, time() + (86400 * 30), "/");
+			setcookie("username", "", time() - 1000);
     		//https://www.w3schools.com/php/php_cookies.asp
 			header("Location: http://localhost");
 		}

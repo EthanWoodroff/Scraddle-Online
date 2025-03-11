@@ -7,14 +7,14 @@ import Board from "/modules/board.js";
 import {allowDrop,drag,drop} from "/modules/dragAndDrop.js";
 
 //defines traits
-const handSize = 7;
-const boardWidth = 7; const boardHeight = 7;
+const handWidth = 7; const handHeight = 2;
+const boardWidth = 5; const boardHeight = 5;
 
 //setting css variables
 var root = document.querySelector(":root");
 root.style.setProperty("--columnCount", boardWidth);
 root.style.setProperty("--rowCount", boardHeight);
-root.style.setProperty("--handSize", handSize);
+root.style.setProperty("--handSize", handWidth);
 
 //function to build a grid for the board and hand
 function BuildGrid(gridName, width, height){
@@ -36,22 +36,24 @@ function BuildGrid(gridName, width, height){
 
 //creates necessary classes
 const tilePool = new TileBag;
-const hand = new Hand(handSize);
+const hand = new Hand(handWidth, handHeight);
 const board = new Board(boardWidth, boardHeight);
 
 //generation of the board
 BuildGrid("board",boardWidth,boardHeight);
 
 //generation of the hand
-BuildGrid("hand",handSize,1);
-for(let i = 0; i < handSize; i++){
-	hand.AddTile(tilePool.TakeTile(), i, 0);
-	const currentTile = hand.gridArray[0][i];
-	const currentCell = document.getElementById("h" + String(i).padStart(2, 0) + "00" + "E");
-	const currentTileID = currentCell.id + currentTile.letter + String(currentTile.value).padStart(2, 0);
-	//the tile id is the first letter of its current grid's name followed by the coordinates of its cell followed by whether its tile is "E"mpty or "F"ull (it should always be full), followed by its letter and value
-	//e.g. a "Z" tile of value 10 in the bottom right of a 3x3 board would have an id of "b0202EZ10"
-	currentTile.DrawTile(currentTileID, currentCell, currentTile);
+BuildGrid("hand",handWidth,handHeight);
+for(let i = 0; i < handWidth; i++){
+	for(let j = 0; j < handHeight; j++){
+	hand.AddTile(tilePool.TakeTile(), i, j);
+		const currentTile = hand.gridArray[j][i];
+		const currentCell = document.getElementById("h" + String(i).padStart(2, 0) + String(j).padStart(2, 0) + "E");
+		const currentTileID = currentCell.id + currentTile.letter + String(currentTile.value).padStart(2, 0);
+		//the tile id is the first letter of its current grid's name followed by the coordinates of its cell followed by whether its tile is "E"mpty or "F"ull (it should always be full), followed by its letter and value
+		//e.g. a "Z" tile of value 10 in the bottom right of a 3x3 board would have an id of "b0202EZ10"
+		currentTile.DrawTile(currentTileID, currentCell, currentTile);
+	}
 }
 
 function dropTile(event){

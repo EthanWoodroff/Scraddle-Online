@@ -114,8 +114,9 @@ div{
     border-radius: var(--borderRadiusRound);
     margin: 20px;
     width: var(--handWidth);
-    height: calc(var(--handWidth) / var(--handSize));
+    height: calc(2 * var(--handWidth) / var(--handSize));
     margin-inline: auto;
+    flex-direction: column;
 }
 #board{
     box-sizing: content-box;

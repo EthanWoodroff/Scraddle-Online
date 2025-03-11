@@ -14,6 +14,7 @@ if ($conn->connect_error) {
 }
 
 $playedToday = FALSE;
+$betterScore = FALSE;
 
 $sql = "SELECT PlayedToday FROM Users
 WHERE Username = '".$_COOKIE["username"]."'";
@@ -28,45 +29,42 @@ if ($result->num_rows > 0) {
     }
 }
 
-if($_COOKIE["signedIn"]==1 and 1){
+if($_COOKIE["signedIn"]==1 and !$playedToday){
     $score = ($_POST["score"]);
     $sql = "UPDATE Users
     SET PlayedToday = true
     WHERE Username = '".$_COOKIE["username"]."'";
-    echo $sql;
-    if ($conn->query($sql) === TRUE) {
-        echo "PlayedToday updated successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    errorCheck($sql, $conn);
 
-    $sql = "SELECT Username FROM Leaderboard
+    $sql = "SELECT Username, Score FROM Leaderboard
     WHERE Username = '".$_COOKIE["username"]."'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "In leaderboard";
-        $sql = "UPDATE Leaderboard
-        SET Score = ".$score."
-        WHERE Username = '".$_COOKIE["username"]."'";
-        echo $sql;
-        if ($conn->query($sql) === TRUE) {
-            echo "Inserted successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        if($row = $result->fetch_assoc()) {
+            if($row["Score"]<$score){
+                $sql = "UPDATE Leaderboard
+                SET Score = ".$score."
+                WHERE Username = '".$_COOKIE["username"]."'";
+                errorCheck($sql, $conn);
+            }
         }
     }
     else{
         echo "Not in leaderboard";
         $sql = "INSERT INTO leaderboard (Username, Score)
         VALUES ('".$_COOKIE["username"]."',".$score.")";
-        echo $sql;
-        if ($conn->query($sql) === TRUE) {
-            echo "Inserted successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+        errorCheck($sql, $conn);
     }
     $conn->close();
 }
-echo $score;
+
+function errorCheck($sql, $conn){
+    echo $sql;
+    if ($conn->query($sql) === TRUE) {
+        echo "Successful";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 ?>
