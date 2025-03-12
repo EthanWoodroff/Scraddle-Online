@@ -7,7 +7,7 @@ class Grid{
 	
 	AddTile(tile, tileY, tileX){
 		this.gridArray[tileX][tileY] = tile;
-		//this.PrintGrid(this.gridArray);
+		this.PrintGrid(this.gridArray);
 	}
 
 	Delete(tileY, tileX){

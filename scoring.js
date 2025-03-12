@@ -9,10 +9,26 @@ function Score(){
 	let totalValue = 0;
 	for(let i = 0; i < words.length; i++){
 		let word = "";
+		let multiplier = 1;
+		let wordValue = 0;
 		for(let j = 0; j < words[i].wordLength; j++){
 			word += words[i].word[j].letter;
-			totalValue += words[i].word[j].value;
+			wordValue += words[i].word[j].value;
+			if(words[i].word[j].type == "TW"){
+				multiplier *= 3;
+			}
+			if(words[i].word[j].type == "DW"){
+				multiplier *= 2;
+			}
+			if(words[i].word[j].type == "TL"){
+				wordValue += 2*words[i].word[j].value;
+			}
+			if(words[i].word[j].type == "DL"){
+				wordValue += words[i].word[j].value;
+			}
 		}
+		totalValue += wordValue*multiplier;
+		console.log(words[i].word);
 		serverInput.value += word;
 		if(i != words.length-1) {serverInput.value += ","};
 	}

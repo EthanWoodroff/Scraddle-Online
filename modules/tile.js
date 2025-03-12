@@ -2,6 +2,7 @@ class Tile{
 	constructor(letter, value){
 		this.letter = letter;
 		this.value = value;
+		this.type = "BB";
 	}
 	
 	DrawTile(ID, cell, tile){

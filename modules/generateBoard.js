@@ -25,6 +25,7 @@ function BuildGrid(gridName, width, height){
 		grid.appendChild(row);
 		for (let j = 0; j < width; j++) {
 			let cell = document.createElement("div");
+			cell.setAttribute("specialType", "BB");
 			cell.setAttribute("class", "cell"); 
 			cell.setAttribute("id", gridName[0] + String(j).padStart(2, 0) + String(i).padStart(2, 0) + "E");
 			//the cell id is the first letter of the cells container followed by its coordinates followed by whether it is "E"mpty or "F"ull
@@ -33,14 +34,25 @@ function BuildGrid(gridName, width, height){
 		}
 	}
 }
+const specialMap = [{type:"TW", coordinates: ["0200","0002","0402","0204"]},
+					{type:"DW", coordinates: ["0202"]},
+					{type:"TL", coordinates: ["0101","0301","0103","0303"]},
+					{type:"DL", coordinates: ["0000","0400","0004","0404"]}];
 
 //creates necessary classes
 const tilePool = new TileBag;
 const hand = new Hand(handWidth, handHeight);
-const board = new Board(boardWidth, boardHeight);
+const board = new Board(boardWidth, boardHeight, specialMap);
 
 //generation of the board
 BuildGrid("board",boardWidth,boardHeight);
+for(let i = 0; i < specialMap.length; i++){
+	for(let j = 0; j < specialMap[i].coordinates.length; j++){
+		console.log(specialMap[i].type + specialMap[i].coordinates[j]);
+		let specialCell = document.getElementById("b"+specialMap[i].coordinates[j]+"E");
+		specialCell.setAttribute("specialType", specialMap[i].type);
+	}
+}
 
 //generation of the hand
 BuildGrid("hand",handWidth,handHeight);
