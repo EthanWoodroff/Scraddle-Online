@@ -1,10 +1,11 @@
 import Tile from "/modules/tile.js";
+import RandomByDate from "/modules/randomByDate.js";
 
 class TileBag{
 	constructor(){
 		this.size = 100;
 		this.topPointer = 0;
-		this.tiles = this.Shuffle(this.size, this.CreateTiles());
+		this.tiles = this.Shuffle(this.size, this.CreateTiles(), 1);
 	}
 	
 	CreateTiles(){
@@ -25,13 +26,17 @@ class TileBag{
 	}
 	
 	//I have used the Fisher-Yates shuffle
-	Shuffle(size, tiles){
+	Shuffle(size, tiles, counter){
 		//https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle 21:02 11/01/2025
 		for(let i = size-1; i > 1; i--){
-			const randomPosition = Math.floor(Math.random() * (i+1));
+			const random = new RandomByDate();
+			const randomPosition = Math.floor(random.GetRandomByDate() * (i+1));
 			const placeholder = tiles[randomPosition];
 			tiles[randomPosition] = tiles[i];
 			tiles[i] = placeholder;
+		}
+		if(counter>0){
+			this.Shuffle(size,tiles,counter-1);
 		}
 		return tiles;
 	}
