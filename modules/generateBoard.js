@@ -128,22 +128,6 @@ for(let i = 0; i < tiles.length; i++){
 	tiles[i].addEventListener('dragstart', drag);
 }
 //https://stackoverflow.com/questions/53630310/use-functions-defined-in-es6-module-directly-in-html 7:50 15/01/2025
-//you don't use the "on" prefix when using querySelector
-
-
-//debug feature for checking the hand
-/*
-for(let i = 0; i < hand.gridArray.length; i++){
-	console.log(hand.gridArray[i].letter + hand.gridArray[i].value);
-}
-
-//debug feature for checking the tile pool
-for(let i = 0; i < tilePool.tiles.length; i++){
-	console.log(tilePool.tiles[i].letter + tilePool.tiles[i].value); 
-}
-*/
-
-
 
 export default board;
 export {boardWidth, boardHeight};
