@@ -12,6 +12,17 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
+
+	session_start();
+	$date = date("d/m/Y");
+	if(!isset($_SESSION["date"])){
+		$_SESSION["date"] = $date;
+	}
+	if($_SESSION["date"]!=$date){
+		$_SESSION["date"] = $date;
+		$sql = "DELETE FROM Leaderboard";
+		$conn->query($sql);
+	}
 ?>
 <!DOCTYPE html>
 <html>

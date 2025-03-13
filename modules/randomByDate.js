@@ -5,8 +5,9 @@ class RandomByDate{
 
     GetRandomByDate()
     {
-        const exactDate = new Date();
-        const day = new Date(exactDate.getFullYear(), exactDate.getMonth(), exactDate.getDay());
+        const dateContainer = document.getElementById("dateContainer");
+        const phpDate = dateContainer.getAttribute("data-date");
+        const day = new Date(phpDate);
         return this.LCG(day.getTime());
     }
 

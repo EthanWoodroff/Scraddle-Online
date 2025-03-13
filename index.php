@@ -18,6 +18,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<span id="dateContainer" data-date=<?php echo date("Y/m/d")?>></span>
 		<script src="/libraries/dragAndDropTouch.js"></script>
 		<!--https://www.npmjs.com/package/drag-drop-touch?activeTab=readme 09:24 27/01/2025-->
 		<link rel="stylesheet" href="/style/scraddleStyle.css">
@@ -46,6 +47,5 @@
 		<form id="submitScore" method="post"><input type="hidden" id="score" name="score" value=0 readonly required></form>
 		<script type="module" src="./scoring.js"></script>
 		<script type="module" src="/modules/generateBoard.js"></script>
-		<script type="module" src="/modules/dragAndDrop.js"></script>
 	</body>
 </html>

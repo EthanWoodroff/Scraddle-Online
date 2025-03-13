@@ -3,6 +3,7 @@ import Tile from "/modules/tile.js";
 import TileBag from "/modules/tileBag.js";
 import Hand from "/modules/hand.js";
 import Board from "/modules/board.js";
+import RandomByDate from "/modules/randomByDate.js";
 //imports scripts
 import {allowDrop,drag,drop} from "/modules/dragAndDrop.js";
 
@@ -34,11 +35,23 @@ function BuildGrid(gridName, width, height){
 		}
 	}
 }
-const specialMap = [{type:"TW", coordinates: ["0200","0002","0402","0204"]},
+const specialMaps = [[{type:"TW", coordinates: []},
+					{type:"DW", coordinates: ["0201","0102","0302","0203"]},
+					{type:"TL", coordinates: ["0000","0400","0004","0404"]},
+					{type:"DL", coordinates: ["0101","0301","0103","0303"]}],
+
+					[{type:"TW", coordinates: ["0202"]},
+					{type:"DW", coordinates: []},
+					{type:"TL", coordinates: ["0101","0301","0103","0303"]},
+					{type:"DL", coordinates: ["0200","0002","0402","0204"]}],
+
+					[{type:"TW", coordinates: ["0200","0002","0402","0204"]},
 					{type:"DW", coordinates: ["0202"]},
 					{type:"TL", coordinates: ["0101","0301","0103","0303"]},
-					{type:"DL", coordinates: ["0000","0400","0004","0404"]}];
-
+					{type:"DL", coordinates: ["0000","0400","0004","0404"]}]];
+const random = new RandomByDate();
+console.log(Math.floor(random.GetRandomByDate()*specialMaps.length));
+const specialMap = specialMaps[Math.floor(random.GetRandomByDate()*specialMaps.length)];
 //creates necessary classes
 const tilePool = new TileBag;
 const hand = new Hand(handWidth, handHeight);
